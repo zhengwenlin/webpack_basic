@@ -6,5 +6,6 @@ class Component {
         this.props = props
     }
 }
-
+//表示为一个类组件
+Component.prototype.isReactComponent = {}
 export default Component

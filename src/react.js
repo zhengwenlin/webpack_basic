@@ -1,4 +1,4 @@
-
+import Component from './Component'
 /**
  * 该方法用于创建React元素
  * React元素本质上是一个普通的JS对象
@@ -26,5 +26,6 @@ function createElement(type, config, children) {
 }
 
 export default {
-    createElement
+    createElement,
+    Component
 }
