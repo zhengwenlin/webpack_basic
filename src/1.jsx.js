@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 let element = React.createElement('h1',
-  {
+  {  
     className: 'title',
     style: {color: 'red'}
   },
