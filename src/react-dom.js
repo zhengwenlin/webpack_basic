@@ -1,3 +1,4 @@
+import {addListener} from './event'
 /**
  * 渲染函数，将React元素（虚拟dom）渲染为真实的dom，挂载到dom容器上
  * @param {*} vdom 
@@ -89,7 +90,10 @@ function updateProps(dom, props) {
   for (let key in props) {
     if (key === 'className') {
       dom[key] = props[key]
-    } else if (key === 'style') {
+    }else if(key.startsWith('on')){
+      //处理事件
+      addListener(dom, key.toLocaleLowerCase(), props[key])
+    }else if (key === 'style') {
       for (let attr in props[key]) {
         dom.style[attr] = props[key][attr]
       }
