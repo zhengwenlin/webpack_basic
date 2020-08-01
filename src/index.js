@@ -1,34 +1,31 @@
 
-import React from './react'
-import ReactDOM from './react-dom'
+// import React from './react'
+// import ReactDOM from './react-dom'
 
-// import React from 'react'
-// import ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-// 组件的状态和事件
-class Counter extends React.Component {
+// ref
+class Calcutlator extends React.Component {
   constructor(props){
     super(props)
-    //声明组件的私有状态
-    this.state = {
-      count: 0
-    }
+    this.a = React.createRef()
+    this.b = React.createRef()
+    this.result = React.createRef()
   }
-  handleClick = (e)=> {
-    console.log(e)
-    // this.setState({
-    //   count: this.state.count + 1
-    // })
+  add = () => {
+   this.result.current.value = this.a.current.value + this.b.current.value  
   }
   render(){
     return (
-      <div>
-         {this.state.count}
-         <button onClick={this.handleClick}>点我</button>
+       <div>
+         <input ref={this.a} />  +    
+         <input ref={this.b} />  <button onClick={this.add}>=</button>   
+         <input ref={this.result} />     
       </div>
     )
   }
 }
-let element = <Counter></Counter>
+let element = <Calcutlator />
 //使用render方法将element这个React元素渲染到root这个容器中
 ReactDOM.render(element, document.getElementById('root'))

@@ -1,3 +1,5 @@
+import {updateQueue} from './Component'
+
 /**
  * 给真实dom添加事件，react中的事件是合成事件，不是原生的
  * @param {*} dom 添加事件的真实dom元素
@@ -29,6 +31,8 @@ function dispatchEvent(event){
     let eventType = 'on' + type
     let listener = target.store && target.store[eventType] //事件监听函数
     if(listener){
+        //设置更新模式为批量更新
+        updateQueue.isBatchingUpdate = true
         //处理合成事件对象
         syntheticEvent.nativeEvent = event
         for(let key in event){
@@ -36,6 +40,8 @@ function dispatchEvent(event){
         }
         //页面中触发的点击事件的事件对象是React处理好的合成事件
         listener(syntheticEvent)
+        updateQueue.batchUpdate()
+        updateQueue.isBatchingUpdate = false
         for(let key in event){
             syntheticEvent[key] = null
         }
